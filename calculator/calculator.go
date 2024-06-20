@@ -41,10 +41,9 @@ func computeExpression(op string, x, y float64) (res float64, err error) {
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 
-	input := ""
 	for {
 		fmt.Print("Enter your expression: ")
-		input, _ = reader.ReadString('\n')
+		input, _ := reader.ReadString('\n')
 
 		if input == "q" {
 			break
