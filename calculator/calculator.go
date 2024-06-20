@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 )
 
 const (
@@ -45,7 +46,7 @@ func main() {
 		fmt.Print("Enter your expression: ")
 		input, _ := reader.ReadString('\n')
 
-		if input == "q" {
+		if strings.TrimSpace(input) == "q" {
 			break
 		}
 
