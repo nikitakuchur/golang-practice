@@ -3,9 +3,7 @@ package main
 import "fmt"
 
 func swap(arr []int, a, b int) {
-	temp := arr[a]
-	arr[a] = arr[b]
-	arr[b] = temp
+	arr[a], arr[b] = arr[b], arr[a]
 }
 
 func quicksort(arr []int) {
