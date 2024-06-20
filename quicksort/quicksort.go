@@ -14,16 +14,17 @@ func quicksort(arr []int) {
 	}
 
 	pivot := len(arr) / 2
+	last := len(arr) - 1
 
-	swap(arr, pivot, len(arr)-1)
+	swap(arr, pivot, last)
 
-	l, r := 0, len(arr)-2
+	l, r := 0, last-1
 	for l <= r {
-		if arr[l] < arr[len(arr)-1] {
+		if arr[l] < arr[last] {
 			l++
 			continue
 		}
-		if arr[r] >= arr[len(arr)-1] {
+		if arr[r] >= arr[last] {
 			r--
 			continue
 		}
@@ -31,7 +32,7 @@ func quicksort(arr []int) {
 		l++
 		r--
 	}
-	swap(arr, l, len(arr)-1)
+	swap(arr, l, last)
 
 	quicksort(arr[:l])
 	quicksort(arr[l+1:])
