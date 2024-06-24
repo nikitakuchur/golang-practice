@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-func swap(arr []int, a, b int) {
+func swap[T any](arr []T, a, b int) {
 	arr[a], arr[b] = arr[b], arr[a]
 }
 
-func quicksort(arr []int) {
+func quicksort[T any](arr []T, less func(a, b T) bool) {
 	if len(arr) < 2 {
 		return
 	}
@@ -18,11 +18,11 @@ func quicksort(arr []int) {
 
 	l, r := 0, last-1
 	for l <= r {
-		if arr[l] < arr[last] {
+		if less(arr[l], arr[last]) {
 			l++
 			continue
 		}
-		if arr[r] >= arr[last] {
+		if !less(arr[r], arr[last]) {
 			r--
 			continue
 		}
@@ -32,12 +32,17 @@ func quicksort(arr []int) {
 	}
 	swap(arr, l, last)
 
-	quicksort(arr[:l])
-	quicksort(arr[l+1:])
+	quicksort(arr[:l], less)
+	quicksort(arr[l+1:], less)
 }
 
 func main() {
 	arr := []int{434, 2, -634, 34, 252, 0, 234, 345, 2123, 64, -44, 23, 96, 223, 42, 12, 49, 2}
-	quicksort(arr)
+
+	less := func(a, b int) bool {
+		return a < b
+	}
+
+	quicksort(arr, less)
 	fmt.Println(arr)
 }
